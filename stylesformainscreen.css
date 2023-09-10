@@ -1,0 +1,63 @@
+#characterdisplay{
+  width: 730px;
+  position: absolute;
+  left:50%;
+  bottom: 110px;
+  margin-left: -365px;
+  height: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#conversationtokenscontainer{
+  width: 50px;
+  height: 20px;
+  position: absolute;
+  left: 50%;
+  margin-left: 370px;
+  bottom: 500px;
+}
+.conversationtokensimage {
+  width: 40px;
+  margin: 3px;
+  height: 20px;
+  position: static;
+  background-color: blue;
+}
+.charactercontainers {
+  width:130px;
+  height:200px;
+  background-color: orange;
+  border: 3px solid white;
+  margin: 5px;
+  color: black;
+}
+#enddaybutton {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background-color: black;
+  color: red;
+  font-size: 30px;
+}
+#enddaybuttoncontainer :hover{
+  background-color: #1F2020;
+}
+#enddaybuttoncontainer {
+  position: absolute;
+  left: 10px;
+  bottom: 250px;
+  width: 100px;
+  height: 100px;
+}
+
+
+.candie {
+  width:130px;
+  height:200px;
+  background-color: red;
+  border: 3px solid white;
+  margin: 5px;
+  color: black;
+}

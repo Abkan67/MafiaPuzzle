@@ -1,0 +1,62 @@
+#conversationscreendisplaycontainer {
+  display: none;
+  width:100%;
+}
+#suspectconversationbox {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  background-color: orange;
+  bottom: 150px;
+  left: 10px;
+}
+#questiontokenscontainer {
+  display: flex;
+  position: absolute;
+  flex-wrap: wrap;
+  left: 30px;
+  bottom: 460px;
+  height: 30px;
+  width: 120px;
+}
+.questiontokensimage {
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  margin: 3px;
+}
+#conversationquestionsdepth1container {
+  width: 100px;
+  height: 400px;
+  bottom: 150px;
+  left: 250px;
+  position: absolute;
+}
+.questionbuttondepth1 {
+  width: 100px;
+  height: auto;
+  position: static;
+  margin: 10px;
+  font-size: 16px;
+}
+#conversationquestionsdepth2container {
+  width: 100px;
+  height: 400px;
+  bottom: 150px;
+  left: 360px;
+  position: absolute;
+}
+.questionbuttondepth2 {
+  width: 100px;
+  position: static;
+  margin: 10px;
+  font-size: 16px;
+  height: auto;
+}
+#endconversationbutton{
+  position: absolute;
+  left: 10px;
+  width: 200px;
+  height: 20px;
+  bottom: 110px;
+}

@@ -1,0 +1,83 @@
+#homescreen {
+  background-color: teal;
+  width: 100%;
+  height:100%;
+}
+#homescreentitle {
+  position: fixed;
+  width: 500px;
+  height:500px;
+  left:50%;
+  margin-left: -250px;
+  text-align: center;
+  top:50%;
+  padding:0px;
+}
+#opengamebutton {
+  position: static;
+  width: 100px;
+  height: 40px;
+}
+#gamescreencontainer {
+  display: none;
+  background-color: #e5ed4e;
+  height: 100%;
+  width:100%;
+}
+#dialougecontainer {
+  font-size: 150%;
+  display: inherit;
+  background-color: black;
+  color: white;
+  border: 5px solid red;
+  position: absolute;
+  bottom: 5px;
+  height:100px;
+  width: 100%;
+  box-sizing: border-box;
+}
+#clickentermessage {
+  text-align: left;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 60%;
+}
+
+body, html {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+
+
+#notepadcontainer {
+
+}
+#opennotepadbutton {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+/*  background-color: yellow;   */
+}
+#closenotepadbutton{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+}
+#notepaddiv {
+  width: 150px;
+  height: 500px;
+  right: 10px;
+  position: absolute;
+  top: 5px;
+  background-color: white;
+  display: none;
+  padding: 10px;
+  padding-top: 50px;
+}

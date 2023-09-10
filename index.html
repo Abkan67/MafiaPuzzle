@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="stylesformainscreen.css">
+  <link rel="stylesheet" href="stylesforconversation.css">
+  <meta charset="UTF-8">
+  <title>Mafia: Solo</title>
+</head>
+<body>
+  <div id="homescreen">
+    <div id="homescreentitle"><h1>Welcome to Mafia: Solo</h1>
+     A killer is plaguing the town! It is up to you to deduce who they are and bring them to justice!<br></br>
+    <button id="opengamebutton">Solve the Mystery!</button></div>
+  </div>
+  <div id="gamescreencontainer">
+
+    <div id="notepadcontainer">
+      <button id="opennotepadbutton"></button>
+      <div id="notepaddiv" contenteditable="true">
+        <button id="closenotepadbutton" contenteditable="false"></button>
+      </div>
+    <div>
+
+    <div id="charscriptContainer">
+      <button id="opencharscriptbutton"></button>
+      <div id="charscriptdiv">
+        <button id="closecharscriptbutton"></button>
+      </div>
+    </div>
+
+    <div id="mainscreendisplaycontainer">
+      <div id="characterdisplay"></div>
+      <div id="conversationtokenscontainer"></div>
+      <div id="enddaybuttoncontainer"><button id="enddaybutton">End Day</button></div>
+    </div>
+
+    <div id="conversationscreendisplaycontainer">
+      <div id="suspectconversationbox"></div>
+      <div id="questiontokenscontainer"></div>
+      <button id="endconversationbutton">End Conversation</button>
+      <div id="conversationquestionsdepth1container"></div>
+      <div id="conversationquestionsdepth2container"></div>
+    </div>
+
+    <div id="dialougecontainer">
+      <div id="dialouge"></div>
+      <div id="clickentermessage"><i>Click the Right Arrow to continue</i></div>
+    </div>
+
+  </div>
+
+
+
+
+  <script src="mylibrary.js" charset="utf-8"></script>
+  <script src="vars.js" charset="utf-8"></script>
+  <script src="main.js" charset="utf-8"></script>
+  <script src="events.js" charset="utf-8"></script>
+  <script src="roles.js" charset="utf-8"></script>
+  <script src="chars.js" charset="utf-8"></script>
+  <script src="dusk.js" charset="utf-8"></script>
+  <script src="gameProgressionFunctions.js" charset="utf-8"></script>
+  <script src="displays.js" charset="utf-8"></script>
+
+</body>
+</html>
