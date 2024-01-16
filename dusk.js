@@ -8,17 +8,10 @@ function endday() {
   queueevent(()=>{saysomething("Accuse one living suspect <b><i>(They Will Die)</i></b>"); allowmurder();});
 }}
 function allowmurder() {
-  canexecute=true;
-  allsuspects.forEach((item, i) => {
-    if(item.isalive){
-    var charactercontainer=item.charactercontainer;
-    charactercontainer.addEventListener("mouseover", ()=>{if(canexecute){item.hoverovertodie();}});
-    charactercontainer.addEventListener("mouseout", ()=>{if(canexecute){item.stophoverovertodie();}})
-    charactercontainer.addEventListener("click", ()=>{if(canexecute){disallowmurder(); item.execute();}})
-  }});
+  setGameState("execute");
 }
 function disallowmurder() {
-  canexecute=false;
+  setGameState("endExecute");
 }
 
 function nightfalls() {

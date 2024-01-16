@@ -1,8 +1,4 @@
-function opengame() {
-  homescreen.style.display="none";
-  gamescreen.style.display="block";
-  openingdialouge();
-}
+
 function openingdialouge() {
   nexteventcanbeopened=true;
   queueevent(()=>{saysomething("It's not every day you get to catch a killer.</br> But you had a feeling this wasn't going to be an average day as soon as you saw the bloodied body.")});
@@ -21,18 +17,29 @@ function openingdialouge() {
 function setupthegame() {
   createcharacters();
   allsuspects.forEach((item, i) => {alivesuspects.push(item);});
+  applyInputHandlerToSuspectBoxes();
   setupkillerthreat();
 
 }
 
 
 
-opengamebutton.addEventListener("click", opengame);
 window.addEventListener("keydown", processkeyclick);
+dialougecontainer.addEventListener("click", nextevent);
 
-/*
+function setGameState(state) {
+  switch(state){
+    case "execute":gameState="execute";break;
+    case "endExecute": gameState="endExecute"; break;
+    default:break;
+  }
+}
+function canExecute() {
+  return (gameState=="execute");
+}
 
-opengame();//CHANGE IN FINAL PRODUCT.
+window.addEventListener("load", ()=>{
+openGameFromOpenPage();//CHANGE IN FINAL PRODUCT.
 nextevent();
 nextevent();
 nextevent();
@@ -42,4 +49,4 @@ nextevent();
 nextevent();
 nextevent();
 console.log(allsuspects)
-*/
+});

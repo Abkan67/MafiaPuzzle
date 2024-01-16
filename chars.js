@@ -1,4 +1,5 @@
-const characternames=["Nathanathan", "Mabel", "Sunny", "Thama", "Juli", "Alexandra", "Mia", "Niko", "Chanat", "Waverly", "Holden", "Suzan"];
+const characternames=["Nathanathan", "Mabel", "Sunny", "Thama", "Juli", "Alexandra", "Mia", "Niko", "Chanat", "Waverly", "Holden", "Suzan",
+    "Regan", "Roginell", "Spectacle", "Gendrell", "Perkeus"];
 endconversationbutton.addEventListener("click", endtheconversation);
 const conversation= {depthlevel:1}
 
@@ -113,9 +114,13 @@ class Suspect {
         if(informationtoadd!=undefined){this.bluffs[bluff].information.push(informationtoadd);}
     }
 
-  onclick(){if(gameactioncanbetaken && numberofconversationtokensleft>=1){closecharacterdisplay(); openconversationdisplay(); this.enterconversation();}}
-  enterconversation() {loseaconversationtoken(); refillquestiontokens();queueevent(()=>{saysomething("You investigate "+this.name); this.queuequestionsdepth1();});conversingcharacter=this;}
-  endconversation() {if(gameactioncanbetaken){this.closeallconversationquestions(); closeconversationdisplay(); opencharacterdisplay();conversingcharacter={endconversation:()=>{}};saysomething("You leave your conversation with "+this.name);}}
+  onclick(){
+    if(canExecute()){disallowmurder(); this.execute();}
+    if(gameactioncanbetaken && numberofconversationtokensleft>=1){ gameactioncanbetaken=false; closecharacterdisplay(); openconversationdisplay(); this.enterconversation();}
+  }
+  enterconversation() {loseaconversationtoken(); refillquestiontokens();queueevent(()=>{saysomething("You investigate "+this.name); gameactioncanbetaken=true; this.queuequestionsdepth1();});conversingcharacter=this;}
+  endconversation() {if(gameactioncanbetaken){this.closeallconversationquestions(); closeconversationdisplay(); opencharacterdisplay();conversingcharacter={endconversation:()=>{}};saysomething("You leave your conversation with "+this.name);
+      if(numberofconversationtokensleft==0){queueevent(()=>{saysomething("You are out of conversations for today.");});}}}
   closeallconversationquestions() {conversationquestionsdepth1container.innerHTML="";conversationquestionsdepth2container.innerHTML="";}// NOTE: CHANGE
   queuequestionsdepth1() {this.questions.forEach((item, i) => {
       const buttontoadd=document.createElement("button");

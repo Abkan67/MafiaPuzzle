@@ -10,7 +10,7 @@
   left:50%;
   margin-left: -250px;
   text-align: center;
-  top:50%;
+  top:5%;
   padding:0px;
 }
 #opengamebutton {
@@ -35,6 +35,9 @@
   height:100px;
   width: 100%;
   box-sizing: border-box;
+}
+#dialougecontainer:hover {
+  background-color: rgb(60,0,0);
 }
 #clickentermessage {
   text-align: left;
@@ -80,4 +83,45 @@ body, html {
   display: none;
   padding: 10px;
   padding-top: 50px;
+}
+
+#charscriptContainer {
+}
+#opencharscriptbutton{
+  position: absolute;
+  right: 70px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+}
+#closecharscriptbutton {
+  position: fixed;
+  right: 70px;
+  top: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+}
+#charscriptdiv {
+  top: 10px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  width: 950px;
+  height: 550px;
+  left: 50%;
+  margin-left: -475px;
+  position: absolute;
+  display: none;
+  padding: 0px;
+  overflow-y: auto;
+}
+.scriptElementDisplay {
+  position: relative;
+  background-color: none;
+  width: 100%;
+  color: black;
+}
+.scriptRoleDisplay {
+  background-color: none;
+  color: white;
 }

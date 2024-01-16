@@ -2,7 +2,7 @@
 
 function processkeyclick(event) {
   var keypressed=event.key;
-  if (keypressed=="ArrowRight") {nextevent();}
+  if (keypressed==">") {nextevent();}
 }
 function closecharacterdisplay(){
   containerofcharacterdisplay.style.display="none";

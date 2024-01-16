@@ -11,7 +11,8 @@ const nightorder= ["Corrupter","Bartender","Killer", "Detector", "Neighbor", "Gr
 const firstnightorder = ["Corrupter","Bartender","Killer", "Detector", "Neighbor", "Informant", "Manager", "Gravekeeper", "Matchmaker", "Exclusionist", "Child", "Survivor", "Screw-up"]
 const allrolestemplate = JSON.parse(JSON.stringify(allroles));
 const allrolesabilities = {
-  "Informant" : {startingnight: (that)=>{
+  "Informant" : { description:"Learn a worker role and two people it could be.",
+    startingnight: (that)=>{
       var seenworker={roletype:"", id:""};
       while (seenworker.roletype!="worker" || seenworker.id==that.id){seenworker= randomArray(allsuspects);}
       var otherworker={id:that.id};
@@ -33,7 +34,8 @@ const allrolesabilities = {
   othernightsbluff: ()=>{
   }  },
 
-  "Manager": {startingnight: (that)=>{
+  "Manager": { description:"Learn a liability role and two people it could be.",
+    startingnight: (that)=>{
       var areliabilitiesinplay=false;
       for (var i = 0; i < allsuspects.length; i++) {if(allsuspects[i].roletype=="liability"){areliabilitiesinplay=true; break;}}
       if (areliabilitiesinplay) {
@@ -58,7 +60,8 @@ const allrolesabilities = {
   othernightsbluff: ()=>{},
  },
 
-  "Detector": {startingnight: (that)=>{
+  "Detector": { description:"Each night learn three people, and if any are an accomplice.",
+    startingnight: (that)=>{
       var chosenplayer1={id:that.id};
       var chosenplayer2={id:that.id};
       var chosenplayer3={id:that.id};
@@ -105,46 +108,48 @@ const allrolesabilities = {
       return "Out of "+chosenplayer1.name+", "+chosenplayer2.name+", and "+chosenplayer3.name+", "+isevil;
   },    },
 
-  "Neighbor":{startingnight: (that)=>{
-    var suspect;
-    alivesuspects.forEach((item, i) => {if(item.id==that.id){suspect=i}});
-    var neighboorleft; var neighboorright;
-    if(suspect==0){neighboorleft=alivesuspects[alivesuspects.length-1]; neighboorright=alivesuspects[1];} else if (suspect==alivesuspects.length-1) {neighboorleft=alivesuspects[alivesuspects.length-2]; neighboorright=alivesuspects[0];} else {neighboorleft=alivesuspects[suspect-1]; neighboorright=alivesuspects[suspect+1];}
-    if(neighboorleft.isevil || neighboorright.isevil) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
-    else {return "Neither of "+ neighboorleft.name+" or "+neighboorright.name+" is evil";}
-  },
-  startingnightbluff: (that, ismalicious)=>{
-    var suspect;
-    alivesuspects.forEach((item, i) => {if(item.id==that.id){suspect=i}});
-    var neighboorleft; var neighboorright;
-    if(suspect==0){neighboorleft=alivesuspects[alivesuspects.length-1]; neighboorright=alivesuspects[1];} else if (suspect==alivesuspects.length-1) {neighboorleft=alivesuspects[alivesuspects.length-2]; neighboorright=alivesuspects[0];} else {neighboorleft=alivesuspects[suspect-1]; neighboorright=alivesuspects[suspect+1];}
-    if(ismalicious){
-    if(!neighboorleft.isevil && !neighboorright.isevil) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
-    else {return "Neither of "+ neighboorleft.name+" or "+neighboorright.name+" is evil";}  }
-    else {
-      if(randInt(0,2)==0) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
+  "Neighbor":{ description:"Each night learn if any of your neighboors are evil",
+    startingnight: (that)=>{
+      var suspect;
+      alivesuspects.forEach((item, i) => {if(item.id==that.id){suspect=i}});
+      var neighboorleft; var neighboorright;
+      if(suspect==0){neighboorleft=alivesuspects[alivesuspects.length-1]; neighboorright=alivesuspects[1];} else if (suspect==alivesuspects.length-1) {neighboorleft=alivesuspects[alivesuspects.length-2]; neighboorright=alivesuspects[0];} else {neighboorleft=alivesuspects[suspect-1]; neighboorright=alivesuspects[suspect+1];}
+      if(neighboorleft.isevil || neighboorright.isevil) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
+      else {return "Neither of "+ neighboorleft.name+" or "+neighboorright.name+" is evil";}
+    },
+    startingnightbluff: (that, ismalicious)=>{
+      var suspect;
+      alivesuspects.forEach((item, i) => {if(item.id==that.id){suspect=i}});
+      var neighboorleft; var neighboorright;
+      if(suspect==0){neighboorleft=alivesuspects[alivesuspects.length-1]; neighboorright=alivesuspects[1];} else if (suspect==alivesuspects.length-1) {neighboorleft=alivesuspects[alivesuspects.length-2]; neighboorright=alivesuspects[0];} else {neighboorleft=alivesuspects[suspect-1]; neighboorright=alivesuspects[suspect+1];}
+      if(ismalicious){
+      if(!neighboorleft.isevil && !neighboorright.isevil) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
+      else {return "Neither of "+ neighboorleft.name+" or "+neighboorright.name+" is evil";}  }
+      else {
+        if(randInt(0,2)==0) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
+        else {return "Neither of "+ neighboorleft.name+" or "+neighboorright.name+" is evil";}
+      }
+    },
+    othernights:(that)=>{
+      var suspect;
+      alivesuspects.forEach((item, i) => {if(item.id==that.id){suspect=i}});
+      var neighboorleft; var neighboorright;
+      if(suspect==0){neighboorleft=alivesuspects[alivesuspects.length-1]; neighboorright=alivesuspects[1];} else if (suspect==alivesuspects.length-1) {neighboorleft=alivesuspects[alivesuspects.length-2]; neighboorright=alivesuspects[0];} else {neighboorleft=alivesuspects[suspect-1]; neighboorright=alivesuspects[suspect+1];}
+      if(neighboorleft.isevil || neighboorright.isevil) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
+      else {return "Neither of "+ neighboorleft.name+" or "+neighboorright.name+" is evil";}
+    },
+    othernightsbluff: (that)=>{
+      var suspect;
+      alivesuspects.forEach((item, i) => {if(item.id==that.id){suspect=i}});
+      var neighboorleft; var neighboorright;
+      if(suspect==0){neighboorleft=alivesuspects[alivesuspects.length-1]; neighboorright=alivesuspects[1];} else if (suspect==alivesuspects.length-1) {neighboorleft=alivesuspects[alivesuspects.length-2]; neighboorright=alivesuspects[0];} else {neighboorleft=alivesuspects[suspect-1]; neighboorright=alivesuspects[suspect+1];}
+      if(neighboorleft.isevil || neighboorright.isevil) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
       else {return "Neither of "+ neighboorleft.name+" or "+neighboorright.name+" is evil";}
     }
   },
-  othernights:(that)=>{
-    var suspect;
-    alivesuspects.forEach((item, i) => {if(item.id==that.id){suspect=i}});
-    var neighboorleft; var neighboorright;
-    if(suspect==0){neighboorleft=alivesuspects[alivesuspects.length-1]; neighboorright=alivesuspects[1];} else if (suspect==alivesuspects.length-1) {neighboorleft=alivesuspects[alivesuspects.length-2]; neighboorright=alivesuspects[0];} else {neighboorleft=alivesuspects[suspect-1]; neighboorright=alivesuspects[suspect+1];}
-    if(neighboorleft.isevil || neighboorright.isevil) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
-    else {return "Neither of "+ neighboorleft.name+" or "+neighboorright.name+" is evil";}
-  },
-  othernightsbluff: (that)=>{
-    var suspect;
-    alivesuspects.forEach((item, i) => {if(item.id==that.id){suspect=i}});
-    var neighboorleft; var neighboorright;
-    if(suspect==0){neighboorleft=alivesuspects[alivesuspects.length-1]; neighboorright=alivesuspects[1];} else if (suspect==alivesuspects.length-1) {neighboorleft=alivesuspects[alivesuspects.length-2]; neighboorright=alivesuspects[0];} else {neighboorleft=alivesuspects[suspect-1]; neighboorright=alivesuspects[suspect+1];}
-    if(neighboorleft.isevil || neighboorright.isevil) {return "At least one of "+neighboorleft.name+" and "+ neighboorright.name+" is evil";}
-    else {return "Neither of "+ neighboorleft.name+" or "+neighboorright.name+" is evil";}
-  }
-  },
 
-  "Gravekeeper":{startingnight: (that)=>{ return "Nothing"
+  "Gravekeeper":{ description:"Learn the character of whoever the player shoots.",
+  startingnight: (that)=>{ return "Nothing"
   },
   startingnightbluff: (that)=>{return "Nothing"},
   othernights:(that)=>{
@@ -168,7 +173,8 @@ const allrolesabilities = {
   }
  },
 
-  "Survivor":{startingnight: (that)=>{ return "Nothing"
+  "Survivor":{ description:"If the killer chooses you, nothing happens.",
+  startingnight: (that)=>{ return "Nothing"
   },
   startingnightbluff: (that)=>{return "Nothing"},
   othernights:()=>{
@@ -176,7 +182,8 @@ const allrolesabilities = {
   othernightsbluff: ()=>{},
 },
 
-  "Killer":{startingnight: (that)=>{
+  "Killer":{ description: "Kill someone each night. If you die, an accomplice becomes the killer. Win when all killers are dead.",
+  startingnight: (that)=>{
       return "Nothing"
   }, startingnightbluff: (that)=>{return "Nothing"},
   othernights:(that)=>{
@@ -199,7 +206,8 @@ const allrolesabilities = {
       }
 
   },  othernightsbluff:(that)=>{if(that.role=="Killer"){queueevent(()=>{saysomething("No blood was spilled last night, but that doesn't mean this town is safe.");})};   }},
-  "Corrupter": { startingnight: (that)=>{
+  "Corrupter": { description:"Each night, corrupt someone until the following night",
+  startingnight: (that)=>{
     var topoison=randomArray(alivesuspects);
     while (topoison.id==that.id || topoison.isevil) {topoison=randomArray(alivesuspects);}
     topoison.corruption.push(1)
@@ -213,7 +221,8 @@ const allrolesabilities = {
   },
   othernightsbluff: ()=>{return "Nothing"},   },
 
-  "Child": { startingnight: (that)=>{return "Nothing"},
+  "Child": { description:"If you shoot the child, you lose.",
+  startingnight: (that)=>{return "Nothing"},
   startingnightbluff: (that)=>{return "Nothing"},
   othernights: (that)=>{},
   othernightsbluff:(that)=>{},    },
@@ -236,7 +245,7 @@ const allrolesabilities = {
       neighboorleft.corruption.push(1); neighboorright.corruption.push(1);},
     othernightsbluff: (that, ismalicious)=>{},   },
 
-    "Matchmaker": {
+    "Matchmaker": { description:"Each night learn two people and if they share a role type.",
       startingnight: (that)=>{
         var chosenplayer1={id:that.id};
         var chosenplayer2={id:that.id};
@@ -270,7 +279,7 @@ const allrolesabilities = {
           else{return chosenplayer1.name+" and "+chosenplayer2.name+" do not share in their type of role"}
       }
     },
-    "Exclusionist": {
+    "Exclusionist": { description: "Each night learn 2 players, and one character type that neither is",
       startingnight: (that)=>{
         var chosenplayer1={id:that.id};
         var chosenplayer2={id:that.id};
@@ -332,7 +341,8 @@ const allrolesabilities = {
         else{var roletype=randomArray(["worker", "liability", "accomplice", "gangster"]); return "There is not a single "+roletype+" among "+chosenplayer1.name+" and "+chosenplayer2.name}//not ismalicious
     }
   },
-    "Screw-up": {startingnight: (that)=>{
+    "Screw-up": { description: "The screw-up is given another role. They get false information based on that role.",
+    startingnight: (that)=>{
       that.believedrole=randomArray(allrolestemplate.worker);
       return allrolesabilities[that.believedrole].startingnightbluff(that, false);
     },
